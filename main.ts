@@ -1,5 +1,8 @@
 namespace palette {
-    export function monochrome() {
+    /**
+     * Gets a monochrome palette from the current palette
+     */
+    export function monochromeFromCurrent() {
         const p = palette.getCurrentColors();
         for(let i = 0; i < p.length; ++i) {
             const c = p.color(i);
@@ -7,15 +10,17 @@ namespace palette {
             const G = (c >> 8) & 0xff;
             const B = (c) & 0xff;
             const l = (R+R+R+B+G+G+G+G)>>3;
-            const m = ((l << 16) | (l << 8) | l);
+            let m = ((l << 16) | (l << 8) | l);
             p.setColor(i, m)
         }
-        palette.setColors(p);
+        return p;
+    }
+
+    /**
+     * Sets a monochrome palette.
+     */
+    //% blockId=palettesetmonochrome block="set monochrome palette"
+    export function setMonochrome() {
+        palette.setColors(monochromeFromCurrent());
     }
 }
-palette.monochrome();
-game.onPaint(function () {
-    for(let i = 0; i < 16; ++i) {
-        screen.fillRect((i % 4) * 20, Math.floor(i / 4) * 20, 16, 16, i);
-    }
-})

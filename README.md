@@ -1,6 +1,12 @@
 
 > Open this page at [https://pelikhan.github.io/arcade-monochrome/](https://pelikhan.github.io/arcade-monochrome/)
 
+Use ``setMonochrome`` to tweak the palette to a monochrome theme.
+
+```blocks
+palette.setMonochrome()
+```
+
 ## Use as Extension
 
 This repository can be added as an **extension** in MakeCode.
